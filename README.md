@@ -52,9 +52,9 @@ Classical soil data are encoded into a quantum state:
 ### 2.2 Variational Circuit
 A *Parameterized Quantum Circuit (PQC)* $U(\boldsymbol{\theta})$ processes the encoded soil state:
 
-$$
+$
 |\psi_{\text{model}}\rangle = U(\boldsymbol{\theta}) |\psi_{\text{data}}\rangle
-$$
+$
 
 Here:
 - $\boldsymbol{\theta} = (\theta_1, \theta_2, \dots, \theta_m)$ are *trainable parameters*  
@@ -67,16 +67,16 @@ Here:
 ### 2.3 Measurement & Prediction
 We measure an *observable* (usually $Z$ on the first qubit):
 
-$$
+$
 y_{\text{pred}} = \langle \psi_{\text{model}} | Z_0 | \psi_{\text{model}} \rangle
-$$
+$
 
 This expectation value is related to *class probability*:  
 
 For binary crop recommendation:
-$$
+$
 p(\text{crop}=1) = \frac{1 + y_{\text{pred}}}{2}, \quad p(\text{crop}=0) = 1 - p(\text{crop}=1)
-$$
+$
 
 For *multi-class recommendation*, multiple qubits are measured and mapped to a softmax layer.
 
@@ -85,9 +85,9 @@ For *multi-class recommendation*, multiple qubits are measured and mapped to a s
 ## 3. Cost Function
 We use a *classical loss function*. For multi-class classification (soil → crop):  
 
-$$
+$
 \mathcal{L}(\boldsymbol{\theta}) = -\frac{1}{N} \sum_{i=1}^N \sum_{k=1}^K y_{i,k} \log(p_{i,k})
-$$
+$
 
 where:
 - $y_{i,k} = 1$ if soil sample $i$ belongs to crop $k$, else $0$  
@@ -102,9 +102,9 @@ Parameters $\boldsymbol{\theta}$ are updated *classically* using optimizers like
 *Parameter-Shift Rule* (for exact quantum gradients):  
 
 If $f(\theta) = \langle \psi(\theta) | \hat{O} | \psi(\theta) \rangle$, then:  
-$$
+$
 \frac{\partial f}{\partial \theta} = \frac{f(\theta + \frac{\pi}{2}) - f(\theta - \frac{\pi}{2})}{2}
-$$
+$
 
 ---
 
